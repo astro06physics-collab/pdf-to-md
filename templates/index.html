@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PDF to Obsidian Converter</title>
+    <link rel="stylesheet" href="/static/style.css">
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <div class="eyebrow">PDF Books to Obsidian</div>
+        <h1>Convert a PDF book into a clean Markdown vault.</h1>
+        <p>Upload a text-based PDF and get a ZIP containing one formatted .md file plus extracted images in an attachments folder.</p>
+      </section>
+
+      <section class="panel">
+        <div id="dropzone" class="dropzone" tabindex="0">
+          <input id="fileInput" type="file" accept="application/pdf,.pdf" hidden>
+          <div class="drop-icon">PDF</div>
+          <h2>Drag and drop your PDF here</h2>
+          <p>or click to browse. Large books are uploaded in chunks.</p>
+          <span id="fileName" class="file-name"></span>
+        </div>
+
+        <div class="options">
+          <label for="linkStyle">Obsidian image link format</label>
+          <select id="linkStyle">
+            <option value="folder" selected>![[attachments/image.png]]</option>
+            <option value="plain">![[image.png]]</option>
+          </select>
+        </div>
+
+        <button id="startButton" class="primary" disabled>Convert PDF</button>
+
+        <div id="progressWrap" class="progress-wrap" hidden>
+          <div class="progress-header">
+            <span id="statusText">Waiting...</span>
+            <span id="progressText">0%</span>
+          </div>
+          <div class="progress-track">
+            <div id="progressBar" class="progress-bar"></div>
+          </div>
+        </div>
+
+        <a id="downloadButton" class="download" href="#" hidden>Download Results</a>
+        <div id="errorBox" class="error" hidden></div>
+      </section>
+
+      <section class="details">
+        <article>
+          <h3>What the ZIP contains</h3>
+          <p><strong>book_name.md</strong> at the root and <strong>attachments/</strong> with extracted image files.</p>
+        </article>
+        <article>
+          <h3>Heading detection</h3>
+          <p>The converter analyzes PDF font sizes, boldness, and style metadata to format headings and subheadings.</p>
+        </article>
+        <article>
+          <h3>Scanned PDFs</h3>
+          <p>If the book is image-only, the Markdown includes an OCR note while still extracting images where possible.</p>
+        </article>
+      </section>
+    </main>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
